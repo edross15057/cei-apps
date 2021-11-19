@@ -1,0 +1,2 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<jdbcDataAdapter class="net.sf.jasperreports.data.jdbc.JdbcDataAdapterImpl"><name>New Data Adapter 1</name><driver>net.sourceforge.jtds.jdbc.Driver</driver><username>dashboard</username><password>dashboard</password><savePassword>true</savePassword><url>jdbc:jtds:sqlserver://cei-server/M1_CE</url><database></database><serverAddress></serverAddress></jdbcDataAdapter>

@@ -1,0 +1,124 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- Created with Jaspersoft Studio version 6.17.0.final using JasperReports Library version 6.17.0-6d93193241dd8cc42629e188b94f9e0bc5722efd  -->
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="work_areas" pageWidth="595" pageHeight="842" columnWidth="555" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="c53a2e7f-593d-413d-9e3c-0416781c8d77">
+	<property name="com.jaspersoft.studio.data.defaultdataadapter" value="Reports\GlobalDataAdapter.xml"/>
+	<property name="com.jaspersoft.studio.data.sql.tables" value=""/>
+	<queryString>
+		<![CDATA[Select * from dashboard.work_center2]]>
+	</queryString>
+	<field name="shortId" class="java.lang.String">
+		<property name="com.jaspersoft.studio.field.name" value="shortId"/>
+		<property name="com.jaspersoft.studio.field.label" value="shortId"/>
+	</field>
+	<field name="jmpJobID" class="java.lang.String">
+		<property name="com.jaspersoft.studio.field.name" value="jmpJobID"/>
+		<property name="com.jaspersoft.studio.field.label" value="jmpJobID"/>
+	</field>
+	<field name="jmpProductionDueDate" class="java.sql.Timestamp">
+		<property name="com.jaspersoft.studio.field.name" value="jmpProductionDueDate"/>
+		<property name="com.jaspersoft.studio.field.label" value="jmpProductionDueDate"/>
+	</field>
+	<field name="jmpJobDate" class="java.sql.Timestamp">
+		<property name="com.jaspersoft.studio.field.name" value="jmpJobDate"/>
+		<property name="com.jaspersoft.studio.field.label" value="jmpJobDate"/>
+	</field>
+	<field name="jmpPartID" class="java.lang.String">
+		<property name="com.jaspersoft.studio.field.name" value="jmpPartID"/>
+		<property name="com.jaspersoft.studio.field.label" value="jmpPartID"/>
+	</field>
+	<field name="jmpPartRevisionID" class="java.lang.String">
+		<property name="com.jaspersoft.studio.field.name" value="jmpPartRevisionID"/>
+		<property name="com.jaspersoft.studio.field.label" value="jmpPartRevisionID"/>
+	</field>
+	<field name="jmpJobPriorityID" class="java.lang.Integer">
+		<property name="com.jaspersoft.studio.field.name" value="jmpJobPriorityID"/>
+		<property name="com.jaspersoft.studio.field.label" value="jmpJobPriorityID"/>
+	</field>
+	<field name="jmpProductionComplete" class="java.lang.Boolean">
+		<property name="com.jaspersoft.studio.field.name" value="jmpProductionComplete"/>
+		<property name="com.jaspersoft.studio.field.label" value="jmpProductionComplete"/>
+	</field>
+	<field name="jmpPartShortDescription" class="java.lang.String">
+		<property name="com.jaspersoft.studio.field.name" value="jmpPartShortDescription"/>
+		<property name="com.jaspersoft.studio.field.label" value="jmpPartShortDescription"/>
+	</field>
+	<field name="jmpProductionQuantity" class="java.math.BigDecimal">
+		<property name="com.jaspersoft.studio.field.name" value="jmpProductionQuantity"/>
+		<property name="com.jaspersoft.studio.field.label" value="jmpProductionQuantity"/>
+	</field>
+	<field name="Operation" class="java.lang.String">
+		<property name="com.jaspersoft.studio.field.name" value="Operation"/>
+		<property name="com.jaspersoft.studio.field.label" value="Operation"/>
+	</field>
+	<field name="jmmPartID" class="java.lang.String">
+		<property name="com.jaspersoft.studio.field.name" value="jmmPartID"/>
+		<property name="com.jaspersoft.studio.field.label" value="jmmPartID"/>
+	</field>
+	<field name="jmmPartShortDescription" class="java.lang.String">
+		<property name="com.jaspersoft.studio.field.name" value="jmmPartShortDescription"/>
+		<property name="com.jaspersoft.studio.field.label" value="jmmPartShortDescription"/>
+	</field>
+	<field name="jmmPullFromStockQuantity" class="java.math.BigDecimal">
+		<property name="com.jaspersoft.studio.field.name" value="jmmPullFromStockQuantity"/>
+		<property name="com.jaspersoft.studio.field.label" value="jmmPullFromStockQuantity"/>
+	</field>
+	<field name="jmmPartBinID" class="java.lang.String">
+		<property name="com.jaspersoft.studio.field.name" value="jmmPartBinID"/>
+		<property name="com.jaspersoft.studio.field.label" value="jmmPartBinID"/>
+	</field>
+	<field name="imrQuantityOnHand" class="java.math.BigDecimal">
+		<property name="com.jaspersoft.studio.field.name" value="imrQuantityOnHand"/>
+		<property name="com.jaspersoft.studio.field.label" value="imrQuantityOnHand"/>
+	</field>
+	<field name="imrQuantityAllocated" class="java.math.BigDecimal">
+		<property name="com.jaspersoft.studio.field.name" value="imrQuantityAllocated"/>
+		<property name="com.jaspersoft.studio.field.label" value="imrQuantityAllocated"/>
+	</field>
+	<background>
+		<band splitType="Stretch"/>
+	</background>
+	<title>
+		<band height="79" splitType="Stretch"/>
+	</title>
+	<pageHeader>
+		<band height="35" splitType="Stretch">
+			<textField>
+				<reportElement x="330" y="2" width="100" height="30" uuid="aff21021-7c2b-48fe-9129-800506982c90"/>
+				<textFieldExpression><![CDATA[$V{PAGE_NUMBER}]]></textFieldExpression>
+			</textField>
+			<textField evaluationTime="Report">
+				<reportElement x="445" y="0" width="100" height="30" uuid="9a91216f-5029-4dcc-81ca-b3f341b5eca3"/>
+				<textFieldExpression><![CDATA[$V{PAGE_NUMBER}]]></textFieldExpression>
+			</textField>
+		</band>
+	</pageHeader>
+	<columnHeader>
+		<band height="61" splitType="Stretch">
+			<staticText>
+				<reportElement x="59" y="0" width="100" height="30" uuid="23eb2781-9aed-4e5e-94e7-c293ab94d277">
+					<property name="com.jaspersoft.studio.spreadsheet.connectionID" value="392902c1-169c-4bce-ac19-e167c2893b89"/>
+				</reportElement>
+				<text><![CDATA[shortId]]></text>
+			</staticText>
+		</band>
+	</columnHeader>
+	<detail>
+		<band height="125" splitType="Stretch">
+			<textField>
+				<reportElement x="59" y="28" width="100" height="30" uuid="bd402837-60e6-49f4-b369-0b565bd7630d">
+					<property name="com.jaspersoft.studio.spreadsheet.connectionID" value="392902c1-169c-4bce-ac19-e167c2893b89"/>
+				</reportElement>
+				<textFieldExpression><![CDATA[$F{shortId}]]></textFieldExpression>
+			</textField>
+		</band>
+	</detail>
+	<columnFooter>
+		<band height="45" splitType="Stretch"/>
+	</columnFooter>
+	<pageFooter>
+		<band height="54" splitType="Stretch"/>
+	</pageFooter>
+	<summary>
+		<band height="42" splitType="Stretch"/>
+	</summary>
+</jasperReport>

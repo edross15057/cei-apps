@@ -1,0 +1,162 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- Created with Jaspersoft Studio version 6.17.0.final using JasperReports Library version 6.17.0-6d93193241dd8cc42629e188b94f9e0bc5722efd  -->
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="EarlyLate" pageWidth="864" pageHeight="864" columnWidth="824" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="c72f96d9-38c2-435f-af49-97a4a2b29c57">
+	<property name="ireport.zoom" value="1.0"/>
+	<property name="ireport.x" value="0"/>
+	<property name="ireport.y" value="687"/>
+	<property name="com.jaspersoft.studio.data.sql.tables" value=""/>
+	<property name="com.jaspersoft.studio.unit." value="inch"/>
+	<property name="com.jaspersoft.studio.unit.pageWidth" value="inch"/>
+	<property name="com.jaspersoft.studio.data.defaultdataadapter" value="Reports\GlobalDataAdapter.xml"/>
+	<style name="Title" forecolor="#FFFFFF" fontName="Times New Roman" fontSize="50" isBold="false"/>
+	<style name="SubTitle" forecolor="#666666" fontName="Times New Roman" fontSize="18" isBold="false"/>
+	<style name="Column header" forecolor="#666666" fontName="Times New Roman" fontSize="14" isBold="true"/>
+	<style name="Detail" mode="Transparent" fontName="Times New Roman"/>
+	<style name="Row" mode="Transparent" fontName="Times New Roman" pdfFontName="Times-Roman">
+		<conditionalStyle>
+			<conditionExpression><![CDATA[$V{REPORT_COUNT}%2 == 0]]></conditionExpression>
+			<style mode="Opaque" backcolor="#F0EFEF"/>
+		</conditionalStyle>
+	</style>
+	<queryString>
+		<![CDATA[select * from  dashboard.shipments_this_year order by  dashboard.shipments_this_year.month_nbr]]>
+	</queryString>
+	<field name="month_nbr" class="java.lang.Integer">
+		<property name="com.jaspersoft.studio.field.name" value="month_nbr"/>
+		<property name="com.jaspersoft.studio.field.label" value="month_nbr"/>
+	</field>
+	<field name="Ship Month" class="java.lang.String">
+		<property name="com.jaspersoft.studio.field.name" value="Ship Month"/>
+		<property name="com.jaspersoft.studio.field.label" value="Ship Month"/>
+	</field>
+	<field name="EARLY" class="java.lang.Integer">
+		<property name="com.jaspersoft.studio.field.name" value="EARLY"/>
+		<property name="com.jaspersoft.studio.field.label" value="EARLY"/>
+	</field>
+	<field name="LATE" class="java.lang.Integer">
+		<property name="com.jaspersoft.studio.field.name" value="LATE"/>
+		<property name="com.jaspersoft.studio.field.label" value="LATE"/>
+	</field>
+	<background>
+		<band height="802" splitType="Stretch">
+			<bar3DChart>
+				<chart evaluationTime="Report">
+					<reportElement x="4" y="120" width="515" height="310" uuid="532c7850-0992-4e43-a682-55e950b16715"/>
+					<chartTitle/>
+					<chartSubtitle/>
+					<chartLegend/>
+				</chart>
+				<categoryDataset>
+					<dataset resetType="Report"/>
+					<categorySeries>
+						<seriesExpression><![CDATA["Early"]]></seriesExpression>
+						<categoryExpression><![CDATA[$F{Ship Month}]]></categoryExpression>
+						<valueExpression><![CDATA[$F{EARLY}]]></valueExpression>
+					</categorySeries>
+					<categorySeries>
+						<seriesExpression><![CDATA["Late"]]></seriesExpression>
+						<categoryExpression><![CDATA[$F{Ship Month}]]></categoryExpression>
+						<valueExpression><![CDATA[$F{LATE}]]></valueExpression>
+					</categorySeries>
+				</categoryDataset>
+				<bar3DPlot>
+					<plot labelRotation="43.0"/>
+					<itemLabel/>
+					<categoryAxisFormat labelRotation="43.0">
+						<axisFormat labelColor="#000000" tickLabelColor="#000000" axisLineColor="#000000"/>
+					</categoryAxisFormat>
+					<valueAxisFormat>
+						<axisFormat labelColor="#000000" tickLabelColor="#000000" axisLineColor="#000000"/>
+					</valueAxisFormat>
+				</bar3DPlot>
+			</bar3DChart>
+		</band>
+	</background>
+	<title>
+		<band height="103" splitType="Stretch">
+			<staticText>
+				<reportElement style="SubTitle" x="160" y="65" width="392" height="29" uuid="7a8ee983-690c-4f4d-9330-42613bd3d628"/>
+				<textElement textAlignment="Right">
+					<font size="22" isBold="false"/>
+				</textElement>
+				<text><![CDATA[Early vs Late shipments]]></text>
+			</staticText>
+			<frame>
+				<reportElement mode="Opaque" x="-20" y="0" width="833" height="65" forecolor="#006699" backcolor="#006699" uuid="29f958b3-9df5-4ee0-905e-9fd33029926f"/>
+				<staticText>
+					<reportElement style="Title" x="24" y="0" width="553" height="65" uuid="cf1fabd8-9376-4a95-a65d-c762a7404011"/>
+					<textElement textAlignment="Right">
+						<font size="54" isBold="false"/>
+					</textElement>
+					<text><![CDATA[Shipments to Date]]></text>
+				</staticText>
+			</frame>
+		</band>
+	</title>
+	<pageHeader>
+		<band splitType="Stretch"/>
+	</pageHeader>
+	<columnHeader>
+		<band height="27" splitType="Stretch">
+			<frame>
+				<reportElement x="227" y="0" width="586" height="20" uuid="793d06e1-d7cc-4d62-ad99-d289a8ce0026"/>
+				<staticText>
+					<reportElement x="-625" y="85" width="68" height="18" uuid="8cac324d-b3e5-42b9-8770-46deb08d8cf6"/>
+					<text><![CDATA[Early]]></text>
+				</staticText>
+				<staticText>
+					<reportElement x="528" y="-3" width="53" height="27" uuid="3f42bc63-847f-463f-bc63-62366157a953">
+						<property name="com.jaspersoft.studio.spreadsheet.connectionID" value="824820ee-612e-4ce1-ba1c-501aac649f81"/>
+					</reportElement>
+					<text><![CDATA[LATE]]></text>
+				</staticText>
+				<staticText>
+					<reportElement x="442" y="0" width="56" height="27" uuid="ccd445ae-0a9a-463f-98bb-7352bf88eaf2">
+						<property name="com.jaspersoft.studio.spreadsheet.connectionID" value="31a8465e-517a-40c9-9e20-1c5ea573d03e"/>
+					</reportElement>
+					<text><![CDATA[EARLY]]></text>
+				</staticText>
+				<staticText>
+					<reportElement x="342" y="-3" width="90" height="27" uuid="873a1464-8056-414a-944d-1b2096842942">
+						<property name="com.jaspersoft.studio.spreadsheet.connectionID" value="88bb8ea4-0186-47df-968c-1b96179ab384"/>
+					</reportElement>
+					<text><![CDATA[Ship Month]]></text>
+				</staticText>
+			</frame>
+		</band>
+	</columnHeader>
+	<detail>
+		<band height="43" splitType="Stretch">
+			<frame>
+				<reportElement x="20" y="0" width="800" height="30" uuid="dec77cf2-1014-4b3e-9934-7f0c65a83bce"/>
+				<textField>
+					<reportElement x="530" y="0" width="110" height="17" uuid="2e3ec309-5395-49d2-9dce-d7d67e004560">
+						<property name="com.jaspersoft.studio.spreadsheet.connectionID" value="88bb8ea4-0186-47df-968c-1b96179ab384"/>
+					</reportElement>
+					<textFieldExpression><![CDATA[$F{Ship Month}]]></textFieldExpression>
+				</textField>
+				<textField>
+					<reportElement x="650" y="0" width="60" height="17" uuid="0ae4ef14-aea1-47bc-975e-9f75ae5fd6ce">
+						<property name="com.jaspersoft.studio.spreadsheet.connectionID" value="31a8465e-517a-40c9-9e20-1c5ea573d03e"/>
+					</reportElement>
+					<textFieldExpression><![CDATA[$F{EARLY}]]></textFieldExpression>
+				</textField>
+				<textField>
+					<reportElement x="740" y="0" width="53" height="17" uuid="f76333b7-4fd8-4271-8d0f-76d5a39dd11b">
+						<property name="com.jaspersoft.studio.spreadsheet.connectionID" value="824820ee-612e-4ce1-ba1c-501aac649f81"/>
+					</reportElement>
+					<textFieldExpression><![CDATA[$F{LATE}]]></textFieldExpression>
+				</textField>
+			</frame>
+		</band>
+	</detail>
+	<columnFooter>
+		<band splitType="Stretch"/>
+	</columnFooter>
+	<pageFooter>
+		<band height="13" splitType="Stretch"/>
+	</pageFooter>
+	<summary>
+		<band splitType="Stretch"/>
+	</summary>
+</jasperReport>

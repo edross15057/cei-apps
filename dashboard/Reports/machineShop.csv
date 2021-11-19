@@ -1,0 +1,13 @@
+Screen,zoom,seconds,parameter_name,parameter_value
+jobs_for_week,1.2,3,work_center,xxx
+Birthdays,1.2,3,,
+EarlyLate,1.2,3,,
+jobs_for_week,1.2,3,work_center,buy for job
+jobs_for_week,1.2,3,work_center,PULL FROM STOCK
+jobs_for_week,1.2,3,work_center,Shipping
+EarlyLate,1.2,3,EarlyLate,
+jobs_for_week,1.2,3,work_center,BILL OF MATERIAL CREATION
+jobs_for_week,1.2,3,work_center,Electrical Assy
+Birthdays,1.2,3,,
+jobs_for_week,1.2,3,work_center,PURCHASE PARTS 
+jobs_for_week,1.2,3,work_center,Print Decals

@@ -1,0 +1,81 @@
+package com.cei.dashboard;
+
+import java.awt.Dimension;
+import java.awt.Toolkit;
+import java.util.List;
+import java.util.concurrent.TimeUnit;
+
+import javax.swing.JFrame;
+
+import org.slf4j.LoggerFactory;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.boot.CommandLineRunner;
+import org.springframework.boot.SpringApplication;
+import org.springframework.boot.autoconfigure.SpringBootApplication;
+import org.springframework.context.annotation.ComponentScan;
+
+import com.cei.common.CEIViewer;
+import com.cei.common.DashboardCommandLineParser;
+import com.cei.common.ReportFrame;
+import com.cei.common.ReportScheduler;
+
+import net.sf.jasperreports.engine.JRPrintPage;
+import net.sf.jasperreports.engine.JasperPrint;
+@ComponentScan("com.cei")
+@SpringBootApplication
+public class DashboardApplication implements CommandLineRunner {
+	private static final org.slf4j.Logger log = LoggerFactory.getLogger(DashboardApplication.class);
+
+	@Autowired
+	ReportFrame frame;
+	@Autowired
+	ReportScheduler rs;
+
+	public static void main(String[] args) {
+		DashboardCommandLineParser parser = new DashboardCommandLineParser(args);
+
+		SpringApplication sa = new SpringApplication(DashboardApplication.class);
+		sa.setHeadless(false);
+		sa.run(" ");
+		// SpringApplication.run(DashboardApplication.class, args);
+	}
+
+	@Override
+	public void run(String... strings) throws Exception {
+		Dimension screenSize = Toolkit.getDefaultToolkit().getScreenSize();
+		while (true) {
+
+			JasperPrint jp = rs.getResults(rs.getNextIdx());
+			List<JRPrintPage> pages = jp.getPages();
+
+			try {
+				CEIViewer viewer = new CEIViewer(jp);
+				int pageCount = jp.getPages().size();
+
+				frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+				frame.setVisible(true);
+
+				System.out.println("after frame");
+
+				viewer.setZoomRatio(rs.getZoom());
+				int currentPage = -1;
+				frame.add(viewer);
+				frame.setVisible(true);
+				;
+				while (viewer.nextPage(currentPage)) {
+					currentPage++;
+
+					TimeUnit.SECONDS.sleep(rs.getSleepSeconds(rs.currentIndex));
+				}
+				frame.remove(viewer);
+
+			} catch (Exception e) {
+				log.error(" error while trying to show report {}, waiting 10 seconds before retry",e.getCause(),e);
+				TimeUnit.SECONDS.sleep(10);
+			}
+
+		}
+
+	}
+
+}
