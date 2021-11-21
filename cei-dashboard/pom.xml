@@ -11,9 +11,9 @@
 	</parent>
 
 	<groupId>com.cei</groupId>
-	<artifactId>dashboard</artifactId>
+	<artifactId>cei-dashboard</artifactId>
 	<version>1.0.2</version>
-	<name>dashboard</name>
+	<name>cei-dashboard</name>
 	<description>Demo project for Spring Boot</description>
 	<properties>
 		<java.version>16</java.version>
