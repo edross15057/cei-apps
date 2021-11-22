@@ -60,7 +60,7 @@ public class DesktopApplication implements CommandLineRunner {
 		while (true) {
 			panel.removeAll();
 			panel.setLayout(flow);rs.currentIndex=-1;
-			for(int x=0; x<rs.getReportCount()-1;x++ ) {
+			for(int x=0; x<rs.getReportCount();x++ ) {
 				rs.getNextIdx();
 				JasperPrint jp = rs.getResults(rs.currentIndex);
 				CEIViewer viewer = new CEIViewer(jp);
