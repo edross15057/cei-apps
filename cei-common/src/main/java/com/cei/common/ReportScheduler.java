@@ -1,11 +1,16 @@
 package com.cei.common;
 
 import java.io.FileReader;
+import java.io.IOException;
 import java.io.InputStream;
 import java.io.Reader;
+import java.nio.charset.StandardCharsets;
+import java.nio.file.Files;
+import java.nio.file.Paths;
 import java.sql.Connection;
 import java.sql.SQLException;
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -115,7 +120,9 @@ public class ReportScheduler {
 		params.put(scr.getParameterName2(),scr.getParameterValue2());
 		
 		Log.info(String.format(" Runing report : %s, param1 %s, parmaValue %s",scr.getName(),scr.getParameterValue(),scr.getParameterValue2() ));
-		
+		if(scr.name.toLowerCase().startsWith("annou")){
+			params.putAll(readAnnouceFile());
+		}
 		Connection con = datasource.getConnection();
 		JasperPrint jp= JasperFillManager.fillReport(jr,params,con);
 		
@@ -126,6 +133,40 @@ public class ReportScheduler {
 		return jp;
 		
 		
+	}
+
+	protected Map<String,String> readAnnouceFile() {
+		String fileName=System.getProperty(DashboardCommandLineParser.ANNOUNCE_FILE);
+		 List<String> lines = Collections.emptyList();
+		 Map<String, String>announceParams=new HashMap<>();
+		    try
+		    {
+		    	
+		       String imageFile="";
+		      lines =
+		       Files.readAllLines(Paths.get(fileName), StandardCharsets.UTF_8);
+		       announceParams.put("Heading",  (lines.size()>0 ) ? lines.get(0):"Header not defined");
+		       announceParams.put("Headering2", (lines.size()>1 ) ? lines.get(1):"");
+		       announceParams.put("Detail", (lines.size()>2 ) ? lines.get(2):"");
+		       if((lines.size()>3) && (lines.get(3).startsWith("Image="))){
+		    	   String tmp=lines.get(3);
+		    	   imageFile=tmp.substring(tmp.indexOf("=")+1);
+		       
+		       }
+		       announceParams.put("image", imageFile);
+		       return announceParams;
+		    }
+		      
+		      
+		    
+		    catch (IOException e)
+		    {
+		 log.error("unable to process accouncement file "+fileName,e);
+				 // do something
+		     
+		    }
+		    return new HashMap<>();
+		    
 	}
 	
 
