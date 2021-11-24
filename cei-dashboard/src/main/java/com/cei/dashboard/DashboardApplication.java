@@ -7,6 +7,8 @@ import java.util.concurrent.TimeUnit;
 
 import javax.swing.JFrame;
 
+import org.apache.commons.cli.MissingOptionException;
+import org.apache.commons.cli.ParseException;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.CommandLineRunner;
@@ -32,7 +34,12 @@ public class DashboardApplication implements CommandLineRunner {
 	ReportScheduler rs;
 
 	public static void main(String[] args) {
-		DashboardCommandLineParser parser = new DashboardCommandLineParser(args);
+		try {
+			DashboardCommandLineParser parser = new DashboardCommandLineParser(args);
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			System.exit(-1);
+		} 
 
 		SpringApplication sa = new SpringApplication(DashboardApplication.class);
 		sa.setHeadless(false);

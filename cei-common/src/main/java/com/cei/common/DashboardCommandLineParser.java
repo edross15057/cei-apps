@@ -3,6 +3,7 @@ package com.cei.common;
 import org.apache.commons.cli.CommandLine;
 import org.apache.commons.cli.CommandLineParser;
 import org.apache.commons.cli.DefaultParser;
+import org.apache.commons.cli.MissingOptionException;
 import org.apache.commons.cli.Options;
 import org.apache.commons.cli.ParseException;
 
@@ -13,7 +14,7 @@ public class DashboardCommandLineParser {
 	public static final String ANNOUNCE_FILE = "AnnounceFile";
 	public static final String REFRESH = "Refresh";
 
-	public DashboardCommandLineParser(String[] args) {
+	public DashboardCommandLineParser(String[] args) throws ParseException,MissingOptionException {
 
 		if (args == null || args.length == 0) {
 			showhelp();
@@ -47,11 +48,17 @@ public class DashboardCommandLineParser {
 			System.setProperty(CSV_NAME, csv);
 			System.setProperty(ANNOUNCE_FILE, announceFile);
 
-		} catch (ParseException e) {
+		} catch (MissingOptionException e) {
 			// TODO Auto-generated catch block
 			showhelp();
+			throw e;
 
 			//System.exit(-1);
+		} catch (ParseException e) {
+			showhelp();
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+			throw e;
 		}
 
 	}
@@ -59,8 +66,8 @@ public class DashboardCommandLineParser {
 	private void showhelp() {
 		System.out.println("you must specify the reports location and the name of the scheduler");
 		System.out.println(String.format(
-				"example  CEI-dashboard -%s x:/dirOfReports -%s/ fullPathAndNameOfSchedudler.csv -%s x:/announce.txt -refresh xx where xx is number of seconds between refresh",
-				REPORTS_DIR, CSV_NAME));
+				"example  CEI-dashboard -%s x:/dirOfReports -%s/ fullPathAndNameOfSchedudler.csv -%s x:/announce.txt -%s xx where xx is number of seconds between refresh",
+				REPORTS_DIR, CSV_NAME,ANNOUNCE_FILE,REFRESH));
 
 	}
 
