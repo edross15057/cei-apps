@@ -24,6 +24,7 @@ import com.cei.common.ReportFrame;
 import com.cei.common.ReportScheduler;
 
 import net.sf.jasperreports.engine.JasperPrint;
+
 @ComponentScan("com.cei")
 @SpringBootApplication
 public class DesktopApplication implements CommandLineRunner {
@@ -47,11 +48,11 @@ public class DesktopApplication implements CommandLineRunner {
 	public void run(String... strings) throws Exception {
 //		Dimension screenSize = Toolkit.getDefaultToolkit().getScreenSize();
 		List<JasperPrint> jpList = new ArrayList<>();
-		List<CEIViewer> viewerList=new ArrayList<>();
-		rs.currentIndex=-1;
+		List<CEIViewer> viewerList = new ArrayList<>();
+		rs.currentIndex = -1;
 		frame.setSize(new Dimension(500, 400));
-		GridLayout flow=new GridLayout(1,0);
-		
+		GridLayout flow = new GridLayout(1, 0);
+
 		frame.setLayout(flow);
 		Panel panel = new Panel();
 		panel.setLayout(flow);
@@ -59,43 +60,41 @@ public class DesktopApplication implements CommandLineRunner {
 		frame.add(panel);
 		while (true) {
 			panel.removeAll();
-			panel.setLayout(flow);rs.currentIndex=-1;
-			for(int x=0; x<rs.getReportCount();x++ ) {
+			panel.setLayout(flow);
+			rs.currentIndex = -1;
+			for (int x = 0; x < rs.getReportCount(); x++) {
 				rs.getNextIdx();
 				JasperPrint jp = rs.getResults(rs.currentIndex);
 				CEIViewer viewer = new CEIViewer(jp);
 				viewer.setZoomRatio(rs.getZoom());
-				panel.add(viewer,x);
-				log.debug("adding viewer {} with name: {}",x,jp.getName());
+				panel.add(viewer, x);
+				log.debug("adding viewer {} with name: {}", x, jp.getName());
 			}
-			//JasperPrint jp = rs.getResults(rs.getNextIdx());
+			// JasperPrint jp = rs.getResults(rs.getNextIdx());
 			// List<JRPrintPage> pages = jp.getPages();
 
 			try {
-				
-				//int pageCount = jp.getPages().size();
-				//frame.add(panel);
-				
+
+				// int pageCount = jp.getPages().size();
+				// frame.add(panel);
+
 				frame.setVisible(true);
 
 				System.out.println("after frame");
 
-				//viewer.setZoomRatio(rs.getZoom());
-				//int currentPage = -1;
-				
 				frame.setVisible(true);
-//				;
-//				while (viewer.nextPage(currentPage)) {
-//					currentPage++;
-//
-//					TimeUnit.SECONDS.sleep(rs.getSleepSeconds(rs.currentIndex));
-//				}
-				TimeUnit.SECONDS.sleep(5);
-				//TimeUnit.SECONDS.sleep(rs.getSleepSeconds(rs.currentIndex));
+				int sleepSeconds = 60;
+				try {
+					sleepSeconds = Integer.parseInt(System.getProperty(DashboardCommandLineParser.REFRESH));
+				} catch (Exception e) {
+					log.error("error parsing refresh rate: %s", System.getProperty(DashboardCommandLineParser.REFRESH));
+				}
+				TimeUnit.SECONDS.sleep(sleepSeconds);
+				// TimeUnit.SECONDS.sleep(rs.getSleepSeconds(rs.currentIndex));
 
 			} catch (Exception e) {
 				log.error(" error while trying to show report {}, waiting 10 seconds before retry", e.getCause(), e);
-				TimeUnit.SECONDS.sleep(10);
+
 			}
 
 		}

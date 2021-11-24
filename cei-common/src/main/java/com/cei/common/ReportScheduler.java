@@ -47,7 +47,7 @@ public class ReportScheduler {
 	DataSource datasource;
 	@Autowired ReportFrame frame;
 	
-	int currentIndex=-1;
+	public int currentIndex=-1;
 	private static final org.slf4j.Logger log = LoggerFactory.getLogger(ReportScheduler.class);
 	private String[] HEADERS = { "screen","zoom", "seconds", "parameter_name","parameter_value","parameter_name2", "parameter_value2" };
 	// private List<Screen> scrList = new ArrayList<>();
@@ -135,6 +135,10 @@ public class ReportScheduler {
 		
 	}
 
+	
+	public int getReportCount() {
+		return scrList.size();
+	}
 	protected Map<String,String> readAnnouceFile() {
 		String fileName=System.getProperty(DashboardCommandLineParser.ANNOUNCE_FILE);
 		 List<String> lines = Collections.emptyList();
