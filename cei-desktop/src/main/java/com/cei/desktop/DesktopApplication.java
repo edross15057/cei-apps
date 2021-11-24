@@ -18,6 +18,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
+import org.springframework.boot.info.BuildProperties;
 import org.springframework.context.annotation.ComponentScan;
 
 import com.cei.common.CEIViewer;
@@ -36,6 +37,9 @@ public class DesktopApplication implements CommandLineRunner {
 	ReportFrame frame;
 	@Autowired
 	ReportScheduler rs;
+	
+	@Autowired
+	BuildProperties buildProperties;
 
 	public static void main(String[] args) {
 		try {
@@ -53,6 +57,9 @@ public class DesktopApplication implements CommandLineRunner {
 
 	// @Override
 	public void run(String... strings) throws Exception {
+		String info = String.format("Running application %s, verion %s built %s", buildProperties.getName(),buildProperties.getVersion(),buildProperties.getTime());
+		log.info(info);
+		System.out.println(info);
 //		Dimension screenSize = Toolkit.getDefaultToolkit().getScreenSize();
 		List<JasperPrint> jpList = new ArrayList<>();
 		List<CEIViewer> viewerList = new ArrayList<>();

@@ -12,7 +12,7 @@
 
 	<groupId>com.cei</groupId>
 	<artifactId>cei-dashboard</artifactId>
-	<version>1.0.2</version>
+	<version>1.0.3</version>
 	<name>cei-dashboard</name>
 	<description>Demo project for Spring Boot</description>
 	<properties>
