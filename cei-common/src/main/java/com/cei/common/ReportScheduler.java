@@ -152,12 +152,13 @@ public class ReportScheduler {
 		       announceParams.put("Heading",  (lines.size()>0 ) ? lines.get(0):"Header not defined");
 		       announceParams.put("Headering2", (lines.size()>1 ) ? lines.get(1):"");
 		       announceParams.put("Detail", (lines.size()>2 ) ? lines.get(2):"");
-		       if((lines.size()>3) && (lines.get(3).startsWith("Image="))){
+		       if((lines.size()>3) && (lines.get(3).toLowerCase().startsWith("image="))){
 		    	   String tmp=lines.get(3);
 		    	   imageFile=tmp.substring(tmp.indexOf("=")+1);
+		    	   announceParams.put("image", imageFile);
 		       
 		       }
-		       announceParams.put("image", imageFile);
+		       
 		       return announceParams;
 		    }
 		      

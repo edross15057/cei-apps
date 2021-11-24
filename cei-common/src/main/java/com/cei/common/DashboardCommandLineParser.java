@@ -25,7 +25,7 @@ public class DashboardCommandLineParser {
 		Options options = new Options();
 		options.addRequiredOption(REPORTS_DIR, REPORTS_DIR, true, "file directory of reports");
 		options.addRequiredOption(CSV_NAME, CSV_NAME, true, "full path of the csv file");
-		options.addOption(ANNOUNCE_FILE, "file containing annouce text");
+		options.addOption(ANNOUNCE_FILE, true,"file containing annouce text");
 		options.addOption(REFRESH, true, "optional refresh time  - default is 60 seconds");
 		try {
 
@@ -35,6 +35,7 @@ public class DashboardCommandLineParser {
 			String announceFile = "none";
 			if (cmd.hasOption(ANNOUNCE_FILE)) {
 				announceFile = cmd.getOptionValue(ANNOUNCE_FILE);
+				System.setProperty(ANNOUNCE_FILE, announceFile);
 			}
 			if (cmd.hasOption(REFRESH)) {
 				String refresh = cmd.getOptionValue(REFRESH);
@@ -46,7 +47,7 @@ public class DashboardCommandLineParser {
 
 			System.setProperty(REPORTS_DIR, reports);
 			System.setProperty(CSV_NAME, csv);
-			System.setProperty(ANNOUNCE_FILE, announceFile);
+			
 
 		} catch (MissingOptionException e) {
 			// TODO Auto-generated catch block
@@ -55,6 +56,12 @@ public class DashboardCommandLineParser {
 
 			//System.exit(-1);
 		} catch (ParseException e) {
+			showhelp();
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+			throw e;
+		}
+		catch (Exception e) {
 			showhelp();
 			// TODO Auto-generated catch block
 			e.printStackTrace();
