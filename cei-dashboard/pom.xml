@@ -6,7 +6,7 @@
 	<parent>
 		<groupId>org.springframework.boot</groupId>
 		<artifactId>spring-boot-starter-parent</artifactId>
-		<version>2.5.4</version>
+		<version>2.6.1</version>
 		<relativePath /> <!-- lookup parent from repository -->
 	</parent>
 
@@ -19,6 +19,23 @@
 		<java.version>16</java.version>
 	</properties>
 	<dependencies>
+	
+	
+	<!-- https://mvnrepository.com/artifact/org.apache.logging.log4j/log4j-api 
+		override the spring boot - security issue
+		
+		-->
+		<!-- https://mvnrepository.com/artifact/org.apache.logging.log4j/log4j-api 
+		override the spring boot - security issue
+		
+		-->
+		<dependency>
+			<groupId>org.apache.logging.log4j</groupId>
+			<artifactId>log4j-api</artifactId>
+			<version>2.16.0</version>
+		</dependency>
+	
+	
 		<dependency>
 			<groupId>com.cei</groupId>
 			<artifactId>cei-common</artifactId>
@@ -31,6 +48,12 @@
 		<dependency>
 			<groupId>org.springframework.boot</groupId>
 			<artifactId>spring-boot-starter-jdbc</artifactId>
+			<exclusions>
+				<exclusion>
+					<groupId>org.apache.logging.log4j</groupId>
+					<artifactId>log4j-to-slf4j</artifactId>
+				</exclusion>
+			</exclusions>
 		</dependency>
 		<!-- <dependency> <groupId>org.springframework.boot</groupId> <artifactId>spring-boot-starter-quartz</artifactId> 
 			</dependency> -->
