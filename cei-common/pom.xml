@@ -4,7 +4,7 @@
 	<modelVersion>4.0.0</modelVersion>
 	<groupId>com.cei</groupId>
 	<artifactId>cei-common</artifactId>
-	<version>1.0.0-SNAPSHOT</version>
+	<version>1.0.1-SNAPSHOT</version>
 	<properties>
 		<java.version>16</java.version>
 	</properties>
@@ -31,13 +31,9 @@
 		</dependency>
 
 		<!-- https://mvnrepository.com/artifact/org.apache.logging.log4j/log4j-api 
-		override the spring boot - security issue
-		
-		-->
+			override the spring boot - security issue -->
 		<!-- https://mvnrepository.com/artifact/org.apache.logging.log4j/log4j-api 
-		override the spring boot - security issue
-		
-		-->
+			override the spring boot - security issue -->
 		<dependency>
 			<groupId>org.apache.logging.log4j</groupId>
 			<artifactId>log4j-api</artifactId>
@@ -62,10 +58,16 @@
 			<version>1.4</version>
 		</dependency>
 
+		<!-- <dependency> <groupId>net.sourceforge.jtds</groupId> <artifactId>jtds</artifactId> 
+			</dependency> -->
+
+		<!-- https://mvnrepository.com/artifact/com.microsoft.sqlserver/mssql-jdbc -->
 		<dependency>
-			<groupId>net.sourceforge.jtds</groupId>
-			<artifactId>jtds</artifactId>
+			<groupId>com.microsoft.sqlserver</groupId>
+			<artifactId>mssql-jdbc</artifactId>
+			<version>10.1.0.jre11-preview</version>
 		</dependency>
+
 		<!-- https://mvnrepository.com/artifact/net.sf.jasperreports/jasperreports -->
 		<dependency>
 			<groupId>net.sf.jasperreports</groupId>
