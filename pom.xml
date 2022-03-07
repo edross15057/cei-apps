@@ -14,6 +14,7 @@
 	<module>cei-common</module>
 	<module>cei-dashboard</module>
 	<module>cei-desktop</module>
+	<module>cei-single</module>
 	</modules>
 
 
