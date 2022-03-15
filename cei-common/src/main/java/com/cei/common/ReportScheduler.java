@@ -57,7 +57,9 @@ public class ReportScheduler {
 	public void setupSchedule() {
 		Reader in;
 		try {
+			
 			String fileName = System.getProperty(DashboardCommandLineParser.CSV_NAME);
+			if(fileName==null) return;
 			in = new FileReader(fileName);
 
 			Iterable<CSVRecord> records = CSVFormat.DEFAULT.withFirstRecordAsHeader().withHeader(HEADERS).parse(in);

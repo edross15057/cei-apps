@@ -1,7 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!-- Created with Jaspersoft Studio version 6.17.0.final using JasperReports Library version 6.17.0-6d93193241dd8cc42629e188b94f9e0bc5722efd  -->
-<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="Simple" pageWidth="595" pageHeight="842" columnWidth="535" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="13acf49e-4913-4d1b-bccc-113817ad15d1">
-	<property name="com.jaspersoft.studio.data.defaultdataadapter" value="One Empty Record"/>
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="Simple" pageWidth="595" pageHeight="842" whenNoDataType="NoDataSection" columnWidth="535" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="13acf49e-4913-4d1b-bccc-113817ad15d1">
+	<property name="com.jaspersoft.studio.data.defaultdataadapter" value="GlobalDataAdapter"/>
+	<property name="com.jaspersoft.studio.data.sql.tables">
+		<![CDATA[ZGFzaGJvYXJkLiJJbnZUcmFucyIgLDE1LDE1LDkyMDU1YmI1LWE2Y2MtNGExOS05ODhjLTdiYjE0
+NzgyOTJhMDs=]]>
+	</property>
 	<style name="Title" forecolor="#FFFFFF" fontName="Times New Roman" fontSize="50" isBold="false"/>
 	<style name="SubTitle" forecolor="#CCCCCC" fontName="Times New Roman" fontSize="18" isBold="false"/>
 	<style name="Column header" forecolor="#666666" fontName="Times New Roman" fontSize="14" isBold="true"/>
@@ -12,10 +16,80 @@
 			<style mode="Opaque" backcolor="#F0EFEF"/>
 		</conditionalStyle>
 	</style>
-	<parameter name="Parameter1" class="java.lang.String"/>
+	<parameter name="startDate" class="java.lang.String"/>
+	<parameter name="endDate" class="java.lang.String"/>
 	<queryString>
-		<![CDATA[]]>
+		<![CDATA[SELECT *
+FROM dashboard."InvTrans"]]>
 	</queryString>
+	<field name="imtPurchaseOrderID" class="java.lang.String">
+		<property name="com.jaspersoft.studio.field.name" value="imtPurchaseOrderID"/>
+		<property name="com.jaspersoft.studio.field.label" value="imtPurchaseOrderID"/>
+	</field>
+	<field name="imtJobID" class="java.lang.String">
+		<property name="com.jaspersoft.studio.field.name" value="imtJobID"/>
+		<property name="com.jaspersoft.studio.field.label" value="imtJobID"/>
+	</field>
+	<field name="imtJobMaterialID" class="java.lang.Integer">
+		<property name="com.jaspersoft.studio.field.name" value="imtJobMaterialID"/>
+		<property name="com.jaspersoft.studio.field.label" value="imtJobMaterialID"/>
+	</field>
+	<field name="imtPartID" class="java.lang.String">
+		<property name="com.jaspersoft.studio.field.name" value="imtPartID"/>
+		<property name="com.jaspersoft.studio.field.label" value="imtPartID"/>
+	</field>
+	<field name="imtPartRevisionID" class="java.lang.String">
+		<property name="com.jaspersoft.studio.field.name" value="imtPartRevisionID"/>
+		<property name="com.jaspersoft.studio.field.label" value="imtPartRevisionID"/>
+	</field>
+	<field name="imtPartBinID" class="java.lang.String">
+		<property name="com.jaspersoft.studio.field.name" value="imtPartBinID"/>
+		<property name="com.jaspersoft.studio.field.label" value="imtPartBinID"/>
+	</field>
+	<field name="imtPreviousQuantityOnHand" class="java.math.BigDecimal">
+		<property name="com.jaspersoft.studio.field.name" value="imtPreviousQuantityOnHand"/>
+		<property name="com.jaspersoft.studio.field.label" value="imtPreviousQuantityOnHand"/>
+	</field>
+	<field name="imtInventoryQuantityReceived" class="java.math.BigDecimal">
+		<property name="com.jaspersoft.studio.field.name" value="imtInventoryQuantityReceived"/>
+		<property name="com.jaspersoft.studio.field.label" value="imtInventoryQuantityReceived"/>
+	</field>
+	<field name="imtScrapQuantity" class="java.math.BigDecimal">
+		<property name="com.jaspersoft.studio.field.name" value="imtScrapQuantity"/>
+		<property name="com.jaspersoft.studio.field.label" value="imtScrapQuantity"/>
+	</field>
+	<field name="imtTransactionDate" class="java.sql.Timestamp">
+		<property name="com.jaspersoft.studio.field.name" value="imtTransactionDate"/>
+		<property name="com.jaspersoft.studio.field.label" value="imtTransactionDate"/>
+	</field>
+	<field name="imtCOGSPostedToGL" class="java.lang.Boolean">
+		<property name="com.jaspersoft.studio.field.name" value="imtCOGSPostedToGL"/>
+		<property name="com.jaspersoft.studio.field.label" value="imtCOGSPostedToGL"/>
+	</field>
+	<field name="impPartClassID" class="java.lang.String">
+		<property name="com.jaspersoft.studio.field.name" value="impPartClassID"/>
+		<property name="com.jaspersoft.studio.field.label" value="impPartClassID"/>
+	</field>
+	<field name="imbPartRevisionID" class="java.lang.String">
+		<property name="com.jaspersoft.studio.field.name" value="imbPartRevisionID"/>
+		<property name="com.jaspersoft.studio.field.label" value="imbPartRevisionID"/>
+	</field>
+	<field name="imbDefaultBin" class="java.lang.Boolean">
+		<property name="com.jaspersoft.studio.field.name" value="imbDefaultBin"/>
+		<property name="com.jaspersoft.studio.field.label" value="imbDefaultBin"/>
+	</field>
+	<field name="imtReceiptLineID" class="java.lang.Integer">
+		<property name="com.jaspersoft.studio.field.name" value="imtReceiptLineID"/>
+		<property name="com.jaspersoft.studio.field.label" value="imtReceiptLineID"/>
+	</field>
+	<field name="imtPurchaseOrderLineID" class="java.lang.Integer">
+		<property name="com.jaspersoft.studio.field.name" value="imtPurchaseOrderLineID"/>
+		<property name="com.jaspersoft.studio.field.label" value="imtPurchaseOrderLineID"/>
+	</field>
+	<field name="impShortDescription" class="java.lang.String">
+		<property name="com.jaspersoft.studio.field.name" value="impShortDescription"/>
+		<property name="com.jaspersoft.studio.field.label" value="impShortDescription"/>
+	</field>
 	<background>
 		<band splitType="Stretch"/>
 	</background>
@@ -61,21 +135,51 @@
 		<band splitType="Stretch"/>
 	</pageHeader>
 	<columnHeader>
-		<band height="26" splitType="Stretch"/>
+		<band height="77" splitType="Stretch">
+			<staticText>
+				<reportElement x="66" y="0" width="100" height="20" uuid="5cee5ee9-eeda-44e1-a9a6-07b16d083e9d">
+					<property name="com.jaspersoft.studio.spreadsheet.connectionID" value="0f050167-3b34-404a-b5f4-d96f72e409e7"/>
+				</reportElement>
+				<text><![CDATA[imtJobID]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="190" y="0" width="100" height="20" uuid="72fbbb19-61ae-40d3-88a7-d2f61eb91312">
+					<property name="com.jaspersoft.studio.spreadsheet.connectionID" value="60555608-8410-4ff8-b76c-b03587ab53f5"/>
+				</reportElement>
+				<text><![CDATA[imtPartBinID]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="350" y="0" width="62" height="20" uuid="64363245-98d0-4197-bc32-a92242966959"/>
+				<text><![CDATA[PAram1 ]]></text>
+			</staticText>
+			<textField>
+				<reportElement x="453" y="9" width="100" height="21" uuid="d09e34e7-fd12-4a04-b31c-00c88a1dd00b"/>
+				<textFieldExpression><![CDATA[$P{startDate}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="434" y="47" width="100" height="23" uuid="dd68ea1c-bd84-4019-a62c-4d49859201d3"/>
+				<textFieldExpression><![CDATA[$P{endDate}]]></textFieldExpression>
+			</textField>
+		</band>
 	</columnHeader>
 	<detail>
-		<band height="120" splitType="Stretch">
-			<frame>
-				<reportElement style="Row" mode="Opaque" x="0" y="0" width="575" height="120" uuid="b50221b5-8254-440b-8c6f-1f0b138c9259"/>
-				<textField>
-					<reportElement x="85" y="79" width="100" height="30" uuid="dc144c82-bec5-4f11-9585-4821b8cb6dc1"/>
-					<textFieldExpression><![CDATA[$P{Parameter1}]]></textFieldExpression>
-				</textField>
-			</frame>
+		<band height="63">
+			<textField>
+				<reportElement x="60" y="0" width="100" height="30" uuid="5d10c4e0-8dda-42bc-8672-6597ad6b91f0">
+					<property name="com.jaspersoft.studio.spreadsheet.connectionID" value="0f050167-3b34-404a-b5f4-d96f72e409e7"/>
+				</reportElement>
+				<textFieldExpression><![CDATA[$F{imtJobID}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="190" y="0" width="100" height="30" uuid="b05ccc9e-0406-45ee-9087-3fdbbccdd298">
+					<property name="com.jaspersoft.studio.spreadsheet.connectionID" value="60555608-8410-4ff8-b76c-b03587ab53f5"/>
+				</reportElement>
+				<textFieldExpression><![CDATA[$F{imtPartBinID}]]></textFieldExpression>
+			</textField>
 		</band>
 	</detail>
 	<columnFooter>
-		<band height="7" splitType="Stretch">
+		<band height="4" splitType="Stretch">
 			<line>
 				<reportElement positionType="FixRelativeToBottom" x="0" y="3" width="555" height="1" uuid="1133a906-5b71-476e-9f3e-bc97c97058c1"/>
 				<graphicElement>
@@ -115,4 +219,12 @@
 	<summary>
 		<band splitType="Stretch"/>
 	</summary>
+	<noData>
+		<band height="64">
+			<textField>
+				<reportElement x="340" y="10" width="100" height="30" uuid="a676fbb2-3392-4cd7-a11b-cb4357a300de"/>
+				<textFieldExpression><![CDATA["No data"]]></textFieldExpression>
+			</textField>
+		</band>
+	</noData>
 </jasperReport>

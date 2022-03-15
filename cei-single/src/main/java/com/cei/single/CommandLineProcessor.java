@@ -24,7 +24,7 @@ import org.springframework.boot.context.properties.bind.DefaultValue;
 public class CommandLineProcessor {
 
 	public static final String REPORT_NAME = "ReportName";
-	public static final String PARM_FILE = "ParmameterFile";
+	public static final String PARM_FILE = "ParameterFile";
 
 	// property file entries
 	public static final String PF_NUMBER_PARAMS = "numberOfParams";
@@ -56,6 +56,7 @@ public class CommandLineProcessor {
 			reportFileName = cmd.getOptionValue(REPORT_NAME);
 			String paramFileName = cmd.getOptionValue(PARM_FILE);
 			File reportFile = new File(reportFileName);
+			
 			if (!reportFile.exists()) {
 				System.out.println(String.format("The report file name %s does not exist", reportFileName));
 				System.exit(-1);
@@ -66,6 +67,7 @@ public class CommandLineProcessor {
 				System.out.println(String.format("The parameter file name %s does not exist", paramFileName));
 				System.exit(-1);
 			}
+			readParamFile(new File(paramFileName));
 
 		} catch (MissingOptionException e) {
 			// TODO Auto-generated catch block
@@ -84,6 +86,7 @@ public class CommandLineProcessor {
 			e.printStackTrace();
 
 		}
+		
 
 	}
 
@@ -147,6 +150,7 @@ public class CommandLineProcessor {
 			e.printStackTrace();
 
 		}
+		
 
 	}
 

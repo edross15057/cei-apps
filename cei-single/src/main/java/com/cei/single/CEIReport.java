@@ -1,23 +1,11 @@
 package com.cei.single;
 
 import java.awt.Dimension;
-import java.awt.FlowLayout;
-import java.awt.GridLayout;
-import java.awt.LayoutManager;
-import java.awt.Panel;
-import java.io.InputStream;
-import java.util.ArrayList;
-import java.util.List;
 import java.util.Map;
-import java.util.concurrent.TimeUnit;
 
 import javax.sql.DataSource;
 import javax.swing.JFrame;
 
-import org.apache.commons.cli.MissingOptionException;
-import org.apache.commons.cli.ParseException;
-import org.jdatepicker.JDateComponentFactory;
-import org.jdatepicker.JDatePicker;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.CommandLineRunner;
@@ -26,17 +14,12 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.boot.info.BuildProperties;
 import org.springframework.context.annotation.ComponentScan;
 
-import com.cei.common.CEIViewer;
-import com.cei.common.DashboardCommandLineParser;
-import com.cei.common.ReportFrame;
-import com.cei.common.ReportScheduler;
-
-import ch.qos.logback.core.pattern.parser.Parser;
 import net.sf.jasperreports.engine.JRException;
 import net.sf.jasperreports.engine.JasperCompileManager;
 import net.sf.jasperreports.engine.JasperFillManager;
 import net.sf.jasperreports.engine.JasperPrint;
 import net.sf.jasperreports.engine.JasperReport;
+import net.sf.jasperreports.swing.JRViewer;
 import net.sf.jasperreports.view.JasperViewer;
 
 @ComponentScan("com.cei")
@@ -46,38 +29,40 @@ public class CEIReport implements CommandLineRunner {
 
 	@Autowired
 	DataSource datasource;
-	
-	@Autowired
-	ReportFrame frame;
-	@Autowired
-	ReportScheduler rs;
-	
+
+//	@Autowired
+//	ReportFrame frame;
+//	@Autowired
+//	ReportScheduler rs;
+
 	@Autowired
 	BuildProperties buildProperties;
 
 	static Map<String, Object> paramsMap;
 	static String reportFilefileName;
+
 	public static void main(String[] args) {
 		try {
 			CommandLineProcessor parser = new CommandLineProcessor(args);
-			reportFilefileName=parser.getReportFileName();
-			paramsMap=parser.getMap();
-			reportFilefileName=parser.reportFileName;
-			
+			reportFilefileName = parser.getReportFileName();
+			paramsMap = parser.getMap();
+			reportFilefileName = parser.reportFileName;
+
 		} catch (Exception e) {
 			// TODO Auto-generated catch block
 			System.exit(-1);
-		} 
-	
+		}
+
 		SpringApplication sa = new SpringApplication(CEIReport.class);
 		sa.setHeadless(false);
 		sa.run(" ");
-		// SpringApplication.run(DashboardApplication.class, args);
+
 	}
 
 	// @Override
 	public void run(String... strings) throws Exception {
-		String info = String.format("Running application %s, verion %s built %s", buildProperties.getName(),buildProperties.getVersion(),buildProperties.getTime());
+		String info = String.format("Running application %s, verion %s built %s", buildProperties.getName(),
+				buildProperties.getVersion(), buildProperties.getTime());
 		log.info(info);
 		System.out.println(info);
 //		Dimension screenSize = Toolkit.getDefaultToolkit().getScreenSize();
@@ -134,17 +119,25 @@ public class CEIReport implements CommandLineRunner {
 //
 //		}
 		JasperReport jasperReport = JasperCompileManager.compileReport(reportFilefileName);
+		System.out.println("Report name: " + reportFilefileName);
 		JasperPrint jp = JasperFillManager.fillReport(jasperReport, paramsMap, datasource.getConnection());
+		// JasperPrint jp = JasperFillManager.fillReport(jasperReport,paramsMap);
 		JFrame frame = new JFrame("CEI Reports");
-		JasperViewer viewer= new JasperViewer(jp);
-		frame.add(viewer);
-	    frame.setSize(new Dimension(750, 650));
-	    frame.setLocationRelativeTo(null);
-	    frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-	    frame.setVisible(true);
-	}
-	private void viewReport() throws JRException {
 		
+		JRViewer viewer = new JRViewer(jp);
+		try {
+			frame.add(viewer);
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		frame.setSize(new Dimension(750, 650));
+		frame.setLocationRelativeTo(null);
+		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		frame.setVisible(true);
+	}
+
+	private void viewReport() throws JRException {
+
 		JasperReport jasperReport = JasperCompileManager.compileReport(System.getProperty("ReportName"));
 	}
 }
